@@ -77,7 +77,8 @@ Results showed, Fine-tuned BERT significantly outperformed all other models, esp
 | Logistic Regression + BERT Embeddings | 94.71        | 97.22                  | 31.03             | 84.84          | 45.44            |
 | SVM + BERT Embeddings               | 96.55        | 98.21                  | 40.57             | 68.20          | 50.70            |
 | XGBoost + BERT Embeddings           | 93.63        | 96.64                  | 26.84             | 83.33          | 40.58            |
-| Fine-Tuned BERT                     | 98.87        | 99.42                  | 78.57             | 78.57          | 78.57            |                    
+| Fine-Tuned BERT                     | 98.87        | 99.42                  | 78.57             | 78.57          | 78.57            |            
+
 Table 1: Model Performance Overview
 
 Although fine-tuning is computationally expensive, its superior performance especially on underrepresented classes justifies its use in sentiment analysis tasks.                 
