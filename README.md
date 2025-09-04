@@ -1,7 +1,10 @@
-Executive Summary and Final Recommendations
-1. Introduction
-This project analysed over 5,000 user-generated hotel reviews from TripAdvisor, covering more than 100 Sri Lankan hotels. The goal was to extract customer sentiments and identify areas of excellence or concern across various aspects of the hotel experience, such as service, food, and room quality. By using a combination of automated tools and machine learning methods, the analysis aimed to deliver actionable insights for decision-making, marketing, and operational improvements.                                                                   (69)
-2.0 Overview of the Data
+# Executive Summary and Final Recommendations
+
+## 1. Introduction
+
+This project analysed over 5,000 user-generated hotel reviews from TripAdvisor, covering more than 100 Sri Lankan hotels. The goal was to extract customer sentiments and identify areas of excellence or concern across various aspects of the hotel experience, such as service, food, and room quality. By using a combination of automated tools and machine learning methods, the analysis aimed to deliver actionable insights for decision-making, marketing, and operational improvements.                                                      
+
+## 2.0 Overview of the Data
 The raw dataset consists of 5,960 raw TripAdvisor reviews from 116 unique Sri Lankan hotels. After data cleaning and preprocessing, the dataset was reduced to 5,320 reviews, with per-hotel review counts ranging from 31 to 60 (mean: 45.86). The raw corpus contained 43,383 unique words, which was reduced to 28,186 unique words.
 2.1 Review Distribution
 Most hotels had between 30 and 60 reviews, with customer feedback averaging 87 words per review. As shown below, most customers left 4- or 5-star ratings, indicating overall satisfaction.
