@@ -9,7 +9,8 @@ The raw dataset consists of 5,960 raw TripAdvisor reviews from 116 unique Sri La
 
 ### 2.1 Review Distribution
 Most hotels had between 30 and 60 reviews, with customer feedback averaging 87 words per review. As shown below, most customers left 4- or 5-star ratings, indicating overall satisfaction.
- 
+
+![Alt text](images/1.png)
 
 Figure 1: Review Length Histogram
  
