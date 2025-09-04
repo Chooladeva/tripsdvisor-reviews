@@ -6,13 +6,18 @@ This project analysed over 5,000 user-generated hotel reviews from TripAdvisor, 
 
 ## 2.0 Overview of the Data
 The raw dataset consists of 5,960 raw TripAdvisor reviews from 116 unique Sri Lankan hotels. After data cleaning and preprocessing, the dataset was reduced to 5,320 reviews, with per-hotel review counts ranging from 31 to 60 (mean: 45.86). The raw corpus contained 43,383 unique words, which was reduced to 28,186 unique words.
-2.1 Review Distribution
+
+### 2.1 Review Distribution
 Most hotels had between 30 and 60 reviews, with customer feedback averaging 87 words per review. As shown below, most customers left 4- or 5-star ratings, indicating overall satisfaction.
  
+
 Figure 1: Review Length Histogram
  
+
 Figure 2: Review Rating Distribution
-2.2 Review Length vs. Sentiment
+
+
+### 2.2 Review Length vs. Sentiment
 An interesting pattern emerged: negative reviews were noticeably longer. This suggests that dissatisfied guests invest more effort in detailing their experiences.
  
 Figure 3: Distribution of Average Review Length by Rating
