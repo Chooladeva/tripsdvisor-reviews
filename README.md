@@ -13,7 +13,7 @@ Most hotels had between 30 and 60 reviews, with customer feedback averaging 87 w
 ![Alt text](images/1.png)
 Figure 1: Review Length Histogram
 
-![Alt text](images/2.png)
+![Alt text](images/2.png)          
 Figure 2: Review Rating Distribution
 
 
