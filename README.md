@@ -124,3 +124,5 @@ To build trust and encourage adoption, incorporate visual tools like attention m
 
 7. Implement an Active Learning Workflow
 Instead of trying to label everything upfront, use active learning, where the BERTopic asks for human input only when it’s uncertain. This allows gradually improvement of label quality and model performance over time.
+
+[Medium Article Link](https://medium.com/@chooladevapiyasiri/unlocking-hotel-insights-what-5-000-tripadvisor-reviews-reveal-about-sri-lankan-hospitality-2b6fed643da0)
