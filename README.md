@@ -1,13 +1,31 @@
-# Executive Summary and Final Recommendations
+# Large-Scale Sentiment & Aspect Analysis of Sri Lankan Hotel Reviews
 
-## 1. Introduction
+## Executive Summary
 
-This project analysed over 5,000 user-generated hotel reviews from TripAdvisor, covering more than 100 Sri Lankan hotels. The goal was to extract customer sentiments and identify areas of excellence or concern across various aspects of the hotel experience, such as service, food, and room quality. By using a combination of automated tools and machine learning methods, the analysis aimed to deliver actionable insights for decision-making, marketing, and operational improvements.                                                      
+This project analysed over 5,000 user-generated hotel reviews from TripAdvisor, covering more than 100 Sri Lankan hotels. The goal was to extract customer sentiments and identify areas of excellence or concern across various aspects of the hotel experience, such as service, food, and room quality. By using a combination of automated tools and machine learning methods, the analysis aimed to deliver actionable insights for decision-making, marketing, and operational improvements.   
 
-## 2.0 Overview of the Data
+## Project Objectives
+- Analyze large-scale hotel review data
+- Automatically establish sentiment labels using ensemble methods
+- Compare sparse vs. dense feature representations
+- Handle extreme class imbalance effectively
+- Benchmark traditional ML models against transformer models
+- Explore aspect-based sentiment using topic modeling
+- Deliver actionable recommendations for hospitality stakeholders
+
+## Overview of the Data
 The raw dataset consists of 5,960 raw TripAdvisor reviews from 116 unique Sri Lankan hotels. After data cleaning and preprocessing, the dataset was reduced to 5,320 reviews, with per-hotel review counts ranging from 31 to 60 (mean: 45.86). The raw corpus contained 43,383 unique words, which was reduced to 28,186 unique words.
 
-### 2.1 Review Distribution
+Preprocessing included:
+- Tokenization
+- Stopword removal
+- Lowercasing
+- Lemmatization
+- Noise removal
+
+## Exploratory Data Analysis
+
+### Review Distribution
 Most hotels had between 30 and 60 reviews, with customer feedback averaging 87 words per review. As shown below, most customers left 4- or 5-star ratings, indicating overall satisfaction.
 
 ![Alt text](images/1.png)
@@ -17,13 +35,13 @@ Figure 1: Review Length Histogram
 Figure 2: Review Rating Distribution
 
 
-### 2.2 Review Length vs. Sentiment
+### Review Length vs. Sentiment
 An interesting pattern emerged: negative reviews were noticeably longer. This suggests that dissatisfied guests invest more effort in detailing their experiences.
 
 ![Alt text](images/3.png)          
 Figure 3: Distribution of Average Review Length by Rating
 
-### 2.3 Traveler Demographics
+### Traveler Demographics
 Families and couples contributed the majority of reviews. Their comments were also longer, on average, compared to solo or business travellers.
 
 ![Alt text](images/4.png)        
@@ -32,8 +50,9 @@ Figure 4: Review Count by Trip Type
 ![Alt text](images/5.png)          
 Figure 5: Review Length by Trip Type
 
-These findings indicate that dissatisfied guests take more time to explain their experiences, offering valuable information for improvement.                                                           
-## 3. Establishing Sentiment Labels
+These findings indicate that dissatisfied guests take more time to explain their experiences, offering valuable information for improvement.       
+
+## Sentiment Labeling Strategy
 Instead of manually reading thousands of reviews, an automated system was built using three well-known sentiment analysis tools. These tools worked together to assign a final sentiment (positive, negative or neutral) to each review.
 - Result: 97% of reviews were labelled positive, 138 reviews were negative, only 9 were neutral.
 - Action: Neutral reviews were excluded to avoid class imbalance and focus on clearer, actionable sentiment. Retaining it introduces noise and degrades overall model quality.
