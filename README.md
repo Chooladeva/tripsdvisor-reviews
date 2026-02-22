@@ -59,37 +59,39 @@ Instead of manually reading thousands of reviews, an automated system was built 
 
 This extreme imbalance (about 37 positive reviews for every 1 negative) created challenges in accurately identifying dissatisfaction, which was addressed during modelling.        
 
-## 4. Understanding Customer Sentiment
+## Feature Engineering
 
 To understand what drives customer satisfaction or dissatisfaction, four types of text analysis methods were used
 - Sparse Vectors: TF-IDF and CountVectorizer
 - Dense Vectors: Word2Vec averaged and GloVe averaged embeddings
 
-Both sparse methods generated high-dimensional representations with shapes of (5,311, 10,000), capturing word frequency and importance across the corpus. 
-The dense representations used pre-trained Word2Vec and GloVe embeddings averaged across each review, resulting in compact vectors of shape (5,311, 300). These capture semantic similarity.
-These methods enabled comparison of different machine learning models, helping to find the most effective approach to detect sentiment from written reviews.                          
+Both sparse methods generated high-dimensional representations with shapes of (5,311, 10,000), capturing word frequency and importance across the corpus.
 
-## 5. Sentiment Classification – Handling Imbalanced Data
+The dense representations used pre-trained Word2Vec and GloVe embeddings averaged across each review, resulting in compact vectors of shape (5,311, 300). These capture semantic similarity.
+                        
+## Handling Extreme Class Imbalance
 
 The dataset showed extreme class imbalance, with over 97% of reviews labelled as positive. This posed a significant challenge in building models that could reliably detect the minority negative class.
 
 Two strategies were explored:
 
-- Class Weighting: Applied in Logistic Regression, SVM, and XGBoost to penalize misclassification of the minority class. This preserved the real-world sentiment distribution and improved recall for negative reviews.
-- SMOTE Oversampling: Synthetic negative samples were generated to balance the dataset. While this boosted recall, it also introduced instability and inflated false positives in some model combinations.
+- **Class Weighting**: Applied in Logistic Regression, SVM, and XGBoost to penalize misclassification of the minority class. This preserved the real-world sentiment distribution and improved recall for negative reviews.
+- **SMOTE Oversampling**: Synthetic negative samples were generated to balance the dataset. While this boosted recall, it also introduced instability and inflated false positives in some model combinations.
 
 Among all configurations, SVM with TF-IDF and class weighting achieved the most balanced performance, delivering strong precision and recall without overfitting. XGBoost only performed competitively when paired with dense embeddings (GloVe, Word2Vec), due to its tendency to overfit on sparse patterns.                                                          
 
-## 6. Building Sentiment Detection Models
+## Model Comparison
 To compare traditional classifiers against modern deep learning methods, two distinct approaches were implemented.
 
-- **Approach 1** – Traditional Models (Logistic Regression, SVM, XGBoost) with BERT Embeddings:
+- **Approach 1**: Traditional Models (Logistic Regression, SVM, XGBoost) with BERT Embeddings:
 Logistic Regression, SVM, and XGBoost were trained on BERT [CLS] pooled embeddings extracted from the pre-trained bert-base-uncased model. 
 Among the traditional models, Support Vector Machines (SVM) with weighted classes performed best, balancing the need to catch negative feedback without mislabeling too many positive reviews. However, all traditional classifiers struggled to precisely distinguish negative reviews.
 
-- **Approach 2** – Modern Deep Learning (BERT Transformer):
+- **Approach 2**: Modern Deep Learning (BERT Transformer):
 In this method, BERT was fine-tuned end-to-end using the Hugging Face Transformers library, allowing it to adapt specifically to the hotel review sentiment classification task.
-Results showed, Fine-tuned BERT significantly outperformed all other models, especially in spotting negative reviews accurately.                                                             
+Results showed, Fine-tuned BERT significantly outperformed all other models, especially in spotting negative reviews accurately.
+
+## Model Performance
 
 | Model                              | Accuracy (%) | F1-Score (Label=1) (%) | Precision (0) (%) | Recall (0) (%) | F1-Score (0) (%) |
 |------------------------------------|--------------|-------------------------|-------------------|----------------|------------------|
@@ -102,7 +104,7 @@ Table 1: Model Performance Overview
 
 Although fine-tuning is computationally expensive, its superior performance especially on underrepresented classes justifies its use in sentiment analysis tasks.                 
 
-## 7. Exploring Hotel Service Aspects
+## Aspect-Based Sentiment Analysis
 
 To go beyond overall sentiment, the analysis explored which specific services (e.g., room, food, staff) drive satisfaction or complaints.
 
@@ -110,7 +112,7 @@ BERTopic was used to group reviews into topics based on similarity. These cluste
 
 Despite this limitation, sentiment classification models were trained within each cluster. Positive feedback was generally well-detected, but negative feedback remained difficult to capture due to the small number of negative samples in each aspect group.
 This method still offers actionable insights (e.g., identifying which service areas consistently receive positive feedback) even if classification of dissatisfaction remains challenging.                                                                                                                
-## 8. Key Limitations
+## Key Limitations
 
 Several challenges impacted the outcomes:
 - Extreme Class Imbalance: Too few negative reviews limited the ability to build accurate models for dissatisfaction.
@@ -119,7 +121,7 @@ Several challenges impacted the outcomes:
 - Sparse Aspect-Level Data: Many clusters had very few negative reviews, reducing model reliability.
 - Resource-Intensive Deep Learning: Fine-tuning BERT is effective but costly, needing GPUs or cloud infrastructure.                                                               
 
-## 9. Final Recommendations
+## Final Recommendations
 
 Based on the findings, the following strategic recommendations are proposed:
 
@@ -144,4 +146,20 @@ To build trust and encourage adoption, incorporate visual tools like attention m
 7. Implement an Active Learning Workflow
 Instead of trying to label everything upfront, use active learning, where the BERTopic asks for human input only when it’s uncertain. This allows gradually improvement of label quality and model performance over time.
 
+### Tech Stack
+
+- Python
+- Scikit-learn
+- XGBoost
+- Hugging Face Transformers
+- BERT
+- BERTopic
+- Word2Vec
+- GloVe
+- Pandas / NumPy
+- Matplotlib / Seaborn
+
+### Medium Article
+
+Full detailed walkthrough available here:
 [Medium Article Link](https://medium.com/@chooladevapiyasiri/unlocking-hotel-insights-what-5-000-tripadvisor-reviews-reveal-about-sri-lankan-hospitality-2b6fed643da0)
